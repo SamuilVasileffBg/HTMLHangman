@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    body {
+      font-size: 16px;
+      text-align: center;
+      background-color: #f8faff;
+    }
+
+    p {
+      font-size: large;
+      font-family: 'Brush Script MT', cursive;
+    }
+
+    input[type=label] {
+      font-size: large;
+    }
+
+    input[type=button] {
+      font-family: 'Brush Script MT', cursive;
+      display: inline-block;
+      font-size: 1em;
+      padding: 15px 30px;
+      margin-top: 1%;
+      margin-bottom: 60px;
+      -webkit-appearance: none;
+      appearance: none;
+      background-color: #3a63b1;
+      color: #fff;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+      box-shadow: 0 2px 25px rgba(0, 17, 255, 0.5);
+    }
+
+    input[type=button]:hover {
+      background-color: #1c499c;
+    }
+
+    input[type=button]:focus {
+      outline: 0;
+    }
+
+    input[type=button]:before,
+    input[type=button]:after {
+      position: absolute;
+      content: "";
+      display: block;
+      width: 140%;
+      height: 100%;
+      left: -20%;
+      z-index: -1000;
+      transition: all ease-in-out 0.5s;
+      background-repeat: no-repeat;
+    }
+
+    input[type=button]:before {
+      display: none;
+      top: -75%;
+      background-image: radial-gradient(circle, #3a63b1 20%, transparent 20%), radial-gradient(circle, transparent 20%, #3a63b1 20%, transparent 30%), radial-gradient(circle, #3a63b1 20%, transparent 20%), radial-gradient(circle, #3a63b1 20%, transparent 20%), radial-gradient(circle, transparent 10%, #3a63b1 15%, transparent 20%), radial-gradient(circle, #3a63b1 20%, transparent 20%), radial-gradient(circle, #3a63b1 20%, transparent 20%), radial-gradient(circle, #3a63b1 20%, transparent 20%), radial-gradient(circle, #3a63b1 20%, transparent 20%);
+      background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
+    }
+
+    input[type=button]:after {
+      display: none;
+      bottom: -75%;
+      background-image: radial-gradient(circle, #3a63b1 20%, transparent 20%), radial-gradient(circle, #3a63b1 20%, transparent 20%), radial-gradient(circle, transparent 10%, #3a63b1 15%, transparent 20%), radial-gradient(circle, #3a63b1 20%, transparent 20%), radial-gradient(circle, #3a63b1 20%, transparent 20%), radial-gradient(circle, #3a63b1 20%, transparent 20%), radial-gradient(circle, #3a63b1 20%, transparent 20%);
+      background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%;
+    }
+
+    input[type=button]:active {
+      transform: scale(0.9);
+      background-color: #3a4cb1;
+      box-shadow: 0 2px 25px rgba(0, 17, 255, 0.2);
+    }
+
+    input[type=button].animate:before {
+      display: block;
+      animation: topBubbles ease-in-out 0.75s forwards;
+    }
+
+    input[type=button].animate:after {
+      display: block;
+      animation: bottomBubbles ease-in-out 0.75s forwards;
+    }
+
+    @keyframes topBubbles {
+      0% {
+        background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
+      }
+
+      50% {
+        background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%;
+      }
+
+      100% {
+        background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%;
+        background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+      }
+    }
+
+    @keyframes bottomBubbles {
+      0% {
+        background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%, 70% -10%, 70% 0%;
+      }
+
+      50% {
+        background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%;
+      }
+
+      100% {
+        background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%;
+        background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+      }
+    }
+
+    .center {
+      padding: 0%;
+      text-align: center;
+      float: left;
+    }
+
+    .center2 {
+      padding: 0%;
+      text-align: center;
+      float: left;
+      position: relative;
+      display: inline-block;
+      max-width: 700px;
+      min-width: 500px;
+      box-sizing: border-box;
+      padding: 5px 5px;
+      background-color: white;
+      margin: 30px 15px;
+      left: 27%;
+      -moz-transform: translate(-50%, 0);
+      -ms-transform: translate(-50%, 0);
+      -webkit-transform: translate(-50%, 0);
+      transform: translate(-50%, 0);
+    }
+
+    .transition,
+    form button,
+    form .question label,
+    form .question input[type="text"] {
+      text-align: center;
+      -moz-transition: all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5);
+      -o-transition: all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5);
+      -webkit-transition: all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5);
+      transition: all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5);
+    }
+
+    * {
+      font-family: Helvetica, sans-serif;
+      font-weight: light;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    form {
+      position: relative;
+      display: inline-block;
+      max-width: 700px;
+      min-width: 500px;
+      box-sizing: border-box;
+      padding: 5px 5px;
+      background-color: white;
+      border-radius: 40px;
+      margin: 30px 15px;
+      left: 59%;
+      -moz-transform: translate(-50%, 0);
+      -ms-transform: translate(-50%, 0);
+      -webkit-transform: translate(-50%, 0);
+      transform: translate(-50%, 0);
+    }
+
+    form h1 {
+      color: #3a63b1;
+      font-weight: 100;
+      letter-spacing: 0.01em;
+      margin-left: 15px;
+      margin-bottom: 35px;
+      text-transform: uppercase;
+    }
+
+    form button {
+      margin-top: 35px;
+      margin-bottom: 1px;
+      background-color: white;
+      border: 1px solid #3a63b1;
+      line-height: 0;
+      font-size: 17px;
+      display: inline-block;
+      box-sizing: border-box;
+      padding: 15px 15px;
+      border-radius: 60px;
+      color: #3a63b1;
+      font-weight: 100;
+      letter-spacing: 0.01em;
+      position: relative;
+      z-index: 1;
+    }
+
+    form button:hover,
+    form button:focus {
+      color: white;
+      background-color: #3a63b1;
+    }
+
+    form .question {
+      position: relative;
+      padding: 10px 0;
+    }
+
+    form .question:first-of-type {
+      padding-top: 0;
+    }
+
+    form .question:last-of-type {
+      padding-bottom: 0;
+    }
+
+    form .question label {
+      transform-origin: left center;
+      color: #3a63b1;
+      font-weight: 100;
+      letter-spacing: 0.01em;
+      font-size: 17px;
+      box-sizing: border-box;
+      padding: 10px 15px;
+      display: block;
+      position: absolute;
+      margin-top: -40px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    form .question input[type="text"] {
+      appearance: none;
+      background-color: none;
+      border: 1px solid #3a63b1;
+      line-height: 0;
+      font-size: 17px;
+      width: 100%;
+      display: block;
+      box-sizing: border-box;
+      padding: 10px 15px;
+      border-radius: 60px;
+      color: #3a63b1;
+      font-weight: 100;
+      letter-spacing: 0.01em;
+      position: relative;
+      z-index: 1;
+    }
+
+    form .question input[type="text"]:focus {
+      outline: none;
+      background: #3a63b1;
+      color: white;
+      margin-top: 30px;
+    }
+
+    form .question input[type="text"]:valid {
+      margin-top: 30px;
+    }
+
+    form .question input[type="text"]:focus~label {
+      -moz-transform: translate(0, -35px);
+      -ms-transform: translate(0, -35px);
+      -webkit-transform: translate(0, -35px);
+      transform: translate(0, -35px);
+    }
+
+    form .question input[type="text"]:valid~label {
+      text-transform: uppercase;
+      font-style: italic;
+      -moz-transform: translate(5px, -35px) scale(0.6);
+      -ms-transform: translate(5px, -35px) scale(0.6);
+      -webkit-transform: translate(5px, -35px) scale(0.6);
+      transform: translate(5px, -35px) scale(0.6);
+    }
+
+    label {
+      font-family: Brush Script MT, cursive;
+      font-size: 120%;
+    }
+  </style>
+</head>
+
+<body style="background-color:powderblue; font-family:'Brush Script MT', cursive;">
+  <div class="center">
+    <form>
+      <label id="currentWord" style="visibility: hidden;"></label><br>
+      <label id="currentWord1"></label><br>
+      <label id="hangedLabel" style="color: #d1e0e0;">Обесен</label>
+      <div class="question">
+        <input type="text" id="input" onkeypress="javascript: return check(event)" required />
+        <label id="inputLabel">Въведете буква</label>
+      </div><br/>
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="А">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="Б">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="В">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="Г">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="Д">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="Е">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="Ж">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="З"><br/>
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="И">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="Й">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="К">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="Л">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="М">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="Н">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="О">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="П"><br/>
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="Р">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="С">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="Т">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="У">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="Ф">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="Х">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="Ц">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="Ч"><br/>
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="Ш">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="Щ">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="Ъ">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="Ь">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="Ю">
+      <input type="button" style="margin-bottom: 1%;" onclick="check({key: this.value.toLowerCase()})" value="Я"><br/>
+      <input type="button" onclick="getRandomWord()" value="Нова игра">
+    </form>
+  </div>
+  <div class="center2">
+    <img src="0.png" style="display: inline;">
+    <img src="1.png" alt="" style="display: none;">
+    <img src="2.png" alt="" style="display: none;">
+    <img src="3.png" alt="" style="display: none;">
+    <img src="4.png" alt="" style="display: none;">
+    <img src="5.png" alt="" style="display: none;">
+    <img src="6.png" alt="" style="display: none;">
+    <img src="7.png" alt="" style="display: none;">
+    <img src="8.png" alt="" style="display: none;">
+  </div>
+</body>
+<script>
+  let words = ["ябълка", "туршия", "дюнер", "клавиатура", "банан", "пиша", "виждам", "държава", "говоря", "свиря"];
+  let currentWord;
+  let hanged = "Обесен!!";
+  let hangedIndex = 0;
+  let bulgarianAlphabet = "абвгдежзийклмнопрстуфхцчшщъьюя";
+
+  String.prototype.replaceAt = function (index, replacement) {
+    return this.substr(0, index) + replacement + this.substr(index + replacement.length);
+  }
+
+  function getRandomWord() {
+    reset();
+    document.getElementById("input").value = "";
+    let num = Math.floor(Math.random() * 10);
+    currentWord = words[num];
+    document.getElementById("currentWord").innerHTML = currentWord;
+    document.getElementById("currentWord1").innerHTML = "*".repeat(currentWord.length);
+  }
+
+  function check(keyPressed) {
+    document.getElementById("input").value = "";
+
+    let key = keyPressed.key;
+    if (!bulgarianAlphabet.includes(key)) {
+      return false;
+    }
+
+    let currentButton = Array.from(document.getElementsByTagName("input")).find(x => x.type == "button" && x.value == key.toUpperCase());
+    currentButton.style.backgroundColor = 'green';
+    currentButton.disabled = true;
+
+    let indexes = [];
+
+    for (let i = 0; i < currentWord.length; i++) {
+      if (currentWord[i] == key) {
+        indexes.push(i);
+      }
+    }
+
+    if (indexes.length != 0) {
+      let output = document.getElementById("currentWord1").innerHTML;
+      indexes.forEach(index => {
+        output = output.replaceAt(index, currentWord[index]);
+        output[index] = currentWord[index];
+        document.getElementById("currentWord1").innerHTML = output;
+        if (!output.includes("*")) {
+          changeInputState(true, "Вие спечелихте. Започнете нова игра.")
+          changeButtonsState(true);
+        }
+      });
+    } else {
+      currentButton.style.backgroundColor = 'red';
+      let firstPart = hanged.slice(0, hangedIndex + 1);
+      let secondPart = hanged.slice(hangedIndex + 1);
+      let output = '<span style="color:#5c8a8a">' + firstPart + '</span>' + secondPart;
+      document.getElementById("hangedLabel").innerHTML = output;
+
+      let newImage = document.querySelector(`img[src='${String(hangedIndex + 1) + ".png"}']`);
+      let oldImage = document.querySelector(`img[src='${String(hangedIndex) + ".png"}']`);
+
+      hangedIndex++;
+
+      oldImage.style.display = "none";
+      newImage.style.display = "inline";
+
+      if (hangedIndex == hanged.length) {
+        changeInputState(true, "Вие изгубихте! Започнете нова игра.");
+        changeButtonsState(true);
+        document.getElementById("currentWord").style.visibility = "visible";
+      } 
+    }
+    return true;
+  }
+
+  function changeButtonsState(isDisabled) {
+    for (const char of bulgarianAlphabet) {
+      let currentButton = Array.from(document.getElementsByTagName("input"))
+      .find(x => x.type == "button" && x.value == char.toUpperCase());
+      currentButton.disabled = isDisabled;
+      }
+  }
+
+  function reset() {
+    for (const char of bulgarianAlphabet) {
+      let currentButton = Array.from(document.getElementsByTagName("input")).find(x => x.type == "button" && x.value == char.toUpperCase());
+      currentButton.style.backgroundColor = '';
+    }
+
+    let images = document.querySelectorAll("img");
+    images[0].style.display = "inline";
+    Array.from(images).slice(1).forEach(i => i.style.display = "none");
+
+    changeButtonsState(false);
+
+    document.getElementById("currentWord").style.visibility = "hidden";
+
+    hangedIndex = 0;
+    document.getElementById("hangedLabel").innerHTML = hanged;
+    changeInputState(false, "Въведете буква.");
+  }
+
+  function changeInputState(isDisabled, text) {
+    let input = document.getElementById("input");
+    input.disabled = isDisabled;
+    let inputLabel = document.getElementById("inputLabel");
+    inputLabel.innerHTML = text;
+  }
+
+  getRandomWord();
+</script>
+
+</html>
